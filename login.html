@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        function check_login()
+        {
+            id = $('#user_id').val();
+            password = $('#user_password').val();
+            
+            $.ajax({
+                url: 'login.php',
+                data: { user_id: id, user_password:password},
+                success: function (data)
+                {
+                    if (data == 'success')
+                        document.location.href = "googlemap.php";
+                }
+
+            })
+        }
+    </script>
+    <div class="login">
+        <form id="user_login_interface" method="POST" >
+            <table id="login_table">
+                <tr>
+                    <td>
+                        <input type="text" name="user_id" id="user_id" placeholder="Username" onkeyup='return ValidateENWord($(this),value);' maxlength="12" /><br /><br />
+                        <input type="password" name="user_password" id="user_password" placeholder="Password" onkeyup='return ValidateENWord($(this),value);' maxlength="12" /><br />
+                        <a class="button"onclick=check_login()>登入</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
